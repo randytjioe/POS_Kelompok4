@@ -31,7 +31,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
       return (
         <>
         <Flex zIndex={50} px={2} h={'70px'}
-     backgroundColor="black" justifyContent="right" 
+     backgroundColor="black" justifyContent="center" 
       alignItems={'center'} w="full" pos="fixed" top="0" padding="20px" display={"flex"} borderBottom={"2px solid #E2E8F0"}>
          
          <Flex px={3} gap={5}>
@@ -42,7 +42,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
 {/* <MenuButton> */}
 
 <Flex alignItems={"center"} >
-    <Flex fontSize={"26px"} color="#F68522">
+    <Flex fontSize={"26px"} color="#F68522" justifyContent="left">
         TOKO JAM TANGAN BATAM
     </Flex>
     <Flex px={9} alignItems="center">
