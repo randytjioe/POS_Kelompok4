@@ -3,7 +3,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
      useDisclosure,Popover, PopoverTrigger, PopoverContent, PopoverArrow, 
      PopoverCloseButton, PopoverHeader, PopoverBody, ListItem, Avatar , Center} from '@chakra-ui/react';
   
-     import Logo from '../assets/logo.svg.png'
+     import Avatar1 from '../assets/avatar.png'
   import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai';
   import { RiAccountCircleFill } from 'react-icons/ri';
   import { MdOutlineFavoriteBorder } from 'react-icons/md';
@@ -30,9 +30,9 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
     const finalRef = useRef(null)
       return (
         <>
-        <Flex zIndex={50} px={2} h={'107px'}
-     backgroundColor="grey" justifyContent="right" 
-      alignItems={'center'} w="full" position={"sticky"} top="0" padding="20px" display={"flex"}>
+        <Flex zIndex={50} px={2} h={'70px'}
+     backgroundColor="black" justifyContent="right" 
+      alignItems={'center'} w="full" pos="fixed" top="0" padding="20px" display={"flex"} borderBottom={"2px solid #E2E8F0"}>
          
          <Flex px={3} gap={5}>
 
@@ -40,8 +40,20 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
 
 {/* <Menu position="fixed" zIndex="3" isLazy> */}
 {/* <MenuButton> */}
-<Flex alignItems={"center"}>
-<Icon  boxSize={"7"} as={FiBell} color="white"  sx={{
+
+<Flex alignItems={"center"} >
+    <Flex fontSize={"26px"} color="#F68522">
+        TOKO JAM TANGAN BATAM
+    </Flex>
+    <Flex px={9} alignItems="center">
+<InputGroup>
+        <InputRightElement pointerEvents="none" children={<AiOutlineSearch />}     />
+            <Input backgroundColor={'white'} type="tel" placeholder="Search" w="470px" h="35px"/>
+            
+          </InputGroup>
+          </Flex>
+
+<Icon  boxSize={"7"} as={FiBell} color="white" sx={{
 _hover: {
   cursor: "pointer",
 }, 
@@ -49,10 +61,10 @@ _hover: {
 </Flex>
 <Popover trigger={'hover'} placement={'bottom-start'} >
 <PopoverTrigger>
-<Flex flexDir={"rows"} px={2} w="150px" h="58px" justifyContent={"center"} alignContent={"center"}>
+<Flex flexDir={"rows"} px={2} w="320px" h="58px" justifyContent={"left"} alignContent={"center"}>
             <Center>
             <Avatar boxSize={"12"}  
-            src={Logo}
+            src={Avatar1}
             sx={{
             _hover: {
               cursor: "pointer",
@@ -60,9 +72,9 @@ _hover: {
             },
           }}/>
           </Center>
-          <Flex flexDir={"column"} px="10px">
-          <Flex fontSize={"22px"} color="white" >Randy</Flex>
-          <Flex fontSize={"18px"} color="white">Admin</Flex>
+          <Flex flexDir={"column"} px="10px" justifyContent={"center"}>
+          <Flex fontSize={"16px"} color="white" >Muhammad iqbal fazlur rahman</Flex>
+          <Flex fontSize={"12px"} color="white">Admin</Flex>
           </Flex>
 </Flex> 
 </PopoverTrigger >

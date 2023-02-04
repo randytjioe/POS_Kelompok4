@@ -7,9 +7,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<PageAdmin />} />
+        <Route path="/dashboard" element={<PageAdmin />} />
         {/* <Route path="/login" element={<PageLogin />} /> */}
-        {/* <Route path="/product" element={<PageProduct />} /> */}
+        <Route path="/products" element={<PageProduct />} />
       </Routes>
     </>
   );

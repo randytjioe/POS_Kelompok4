@@ -22,6 +22,7 @@ import {
   FiBox,
   FiWatch,
 } from 'react-icons/fi';
+import {FaPowerOff} from 'react-icons/fa'
 
 
 export default function Sidebar() {
@@ -31,9 +32,9 @@ export default function Sidebar() {
   const finalRef = useRef(null)
     return (
       <>
-    <Flex zIndex={90} px={2} w={'240px'}
-     backgroundColor="#000000" justifyContent="center" 
-       h="full" pos="fixed" top="0" padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"}>
+    <Flex zIndex={90} px={2} w={'209px'}
+     backgroundColor="#1E2C3C" justifyContent="center" 
+       h="full" pos="fixed" top="0" padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"} >
     <Flex  gap={5} flexDir={"column"}  >
     <Flex   justifyContent="center" alignItems={"center"}>
           <Center>
@@ -44,7 +45,7 @@ export default function Sidebar() {
               _hover: {
                 cursor: 'pointer',
               },
-            }} w={"149px"} h={"178px"}
+            }} w={"149px"} h={"178px"} borderRadius="20%"
           ></Image>
           </Center>
         </Flex>
@@ -54,24 +55,40 @@ export default function Sidebar() {
         _hover={{
           bg: 'grey',
           color: 'black',
-        }} py={2}> <Icon as={FiHome} color="white" mx={2}/><Link to='/women' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > DASHBOARD</Link> </Flex>
+        }} py={2}>
+           <Icon as={FiHome} color="white" mx={2}/>
+           <Link to='/dashboard' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > DASHBOARD</Link> 
+           </Flex>
         <Flex w="207px" h="56px"  alignItems={'center'} 
         _hover={{
           bg: 'grey',
           color: 'black',
         }} py={2}
-        > <Icon as={FiBox} color="white" mx={2}/><Link to='/men'as="b" mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > PRODUCTS</Link> </Flex>
+        > 
+        <Icon as={FiBox} color="white" mx={2}/>
+        <Link to='/products' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > PRODUCTS</Link> 
+        </Flex>
         <Flex w="207px" h="56px"  alignItems={'center'}
         _hover={{
           bg: 'grey',
           color: 'black',
-        }} py={2}><Icon as={FiWatch} color="white" mx={2}/><Link as="b" mx={3}  fontSize={16} color="white" > TRANSACTION</Link></Flex>
+        }} py={2}>
+          <Icon as={FiWatch} color="white" mx={2}/>
+        <Link to='/transaction' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > TRANSACTION</Link>
+        </Flex>
+        <Divider orientation="horizontal" py={2}/>
+         
+        <Flex w="207px" h="56px"  alignItems={'center'}
+        _hover={{
+          bg: 'grey',
+          color: 'black',
+        }} py={2}>
+          <Icon as={FaPowerOff} color="white" mx={2}/>
+          <Link as="b" mx={3}  fontSize={16} color="white" > LOG OUT</Link>
+          </Flex>
 
         </Flex>  
-        <Flex alignItems={'center'} >
-      
-          </Flex>
-         
+            
           </Flex>
         </Flex>
     </>
