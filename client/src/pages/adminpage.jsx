@@ -1,6 +1,11 @@
 
-export default function AdminPage() {
+import SideBar  from "../components/sidebar"
+import NavBar  from "../components/navbar"
+import ContentBar  from "../components/content_bar"
+export default function PageAdmin(){
+
     return(
-        <h1>ADMIN PAGE</h1>
-    )
-}
+        <>
+            <SideBar/>
+            <NavBar/>
+            <ContentBar/>

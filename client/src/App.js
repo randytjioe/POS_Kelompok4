@@ -8,11 +8,11 @@ function App() {
     {routes.map((val,key)=> {
       return(
         <Route exact path={val.path} element={val.element} key={key}></Route>
+        
       )
     })}
 
    </Routes>
-  );
+  )
 }
-
 export default App;

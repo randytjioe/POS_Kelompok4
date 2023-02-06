@@ -9,6 +9,9 @@ import {configureStore} from "@reduxjs/toolkit"
 import rootReducer from './redux/store';
 import { Provider } from 'react-redux';
 import thunk from "redux-thunk"
+import { BrowserRouter } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+
 
 const store = configureStore({reducer:rootReducer,middleware:[thunk]})
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,10 +20,14 @@ root.render(
     <Provider store={store}>
     <ChakraProvider>
       <BrowserRouter>
-    <App />
+      <ChakraProvider>
+        <BrowserRouter>
+          <App />
      </BrowserRouter>
     </ChakraProvider>
     </Provider>
+        </BrowserRouter>
+      </ChakraProvider>
   </React.StrictMode>
 );
 
