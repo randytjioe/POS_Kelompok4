@@ -9,33 +9,49 @@ export default function PageProducts(){
     const [data,setData] = useState();
     const [datamen,setdatamen] = useState();
     const [datawomen,setdatawomen] = useState();
+    const [dataall,setdataall] = useState();
     
     const [isLoading,setIsLoading] = useState(true)
     const [posts,setPosts] = useState([])
-    
-    const fetchPosts = async (garmin)=> {
-     const datas =  await axiosInstance.get("posts")
-    console.log(datas.result.data)
-     
-    //  .then((res)=> {
-    //       setPosts(res.data)
-    //   })
+    const [categories1,setCategories1] =  useState([
+        "GARMIN","CASIO","ALBA","TIMEX", "ALEXANDRE CHRISTIE", "FOSSIL"
+      ])
 
-      console.log(garmin)
-      if(garmin) 
-      {
-       const filtered =  datas.result.data.filter((val)=> {
-          return  val?.category === garmin 
+      const [gender,setGender] = useState(["men","women"])
+    
+
+
+    const fetchFilPro = async () => {
+      let url = ""
+      categories1.map((val,idx) => {
+      idx? url  += `&${val}=${val}` : url += `${val}=${val}`
+      })
+
+      gender.map((val,idx) => {
+        url? url  += `&${val}=${val}` : url += `${val}=${val}`
         })
 
-        return setPosts(filtered)
-      }
-     
-      setPosts(datas.result.data)
+      console.log(url)
+   
+      await axiosInstance.get("/filter?"+url).then((res)=>{
+
+        setData(res.data.result)
+      })
+
+    
     }
+
+    useEffect(()=> {
+      console.log(categories1)
+    },[categories1])
+
+    
+    useEffect(()=> {
+      console.log(gender)
+    },[gender])
     
     useEffect(()=>{
-      fetchPosts();
+      // fetchPosts();
         fetchData();
       setTimeout(() => {
         
@@ -45,43 +61,76 @@ export default function PageProducts(){
      
     },[])
     
-    async function fetchData(garmin) {
-     await axiosInstance.get("/product-men").then((res)=>{
+    async function fetchData(categories1,gender) {
+     await axiosInstance.get("/product-all").then((res)=>{
         setData(res.data.result)
         
-        const productmen = res.data.result.filter((val) => {
-          return val.men === 1 
-        })
+        // const productmen = res.data.result.filter((val) => {
+        //   return val.men === 1 
+        // })
 
-        console.log(productmen)
+        // // console.log(productmen)
 
-        if(garmin) { 
-        console.log("masuk")
+        // if(categories1) { 
+        // console.log("masuk")
         
           
-        const filter =   productmen.filter((val)=> {
-            return val.category === garmin
-          })
+        // const filter =   productmen.filter((val)=> {
+        //      categories1.map((cat) => {
+        //       return cat
+        //     })
+        //   })
 
-        console.log(filter)
+        // console.log(filter)
 
 
-          return setdatamen(filter)
-        }
+        //   return setdatamen(filter)
+        // }
     
-        setdatamen(productmen);
+        // setdatamen(productmen);
     })
 
-    await axiosInstance.get("/product-women").then((res)=>{
-      setData(res.data.result)
+    // await axiosInstance.get("/product-women").then((res)=>{
+    //   setData(res.data.result)
       
-      const productwomen = res.data.result.filter((val) => {
-        return val.women === 1 
-      })
+    //   const productwomen = res.data.result.filter((val) => {
+    //     return val.women === 1 
+    //   })
       
+    //   if(categories1) { 
+    //     console.log("masuk")
+        
+          
+    //     const filter =   productwomen.filter((val)=> {
+    //          categories1.map((cat) => {
+    //           return cat
+    //         })
+    //       })
+
+    //       return setdatawomen(filter)
+    //     }
+    //   setdatawomen(productwomen);
+    // })
+
+    // await axiosInstance.get("/product-all").then((res)=>{
+    //   setData(res.data.result)
+      
+    //   const productall = res.data.result
+    //   if(categories1) { 
+    //     console.log("masuk")
+        
+          
+    //     const filter =   productall.filter((val)=> {
+    //          categories1.map((cat) => {
+    //           return cat
+    //         })
+    //       })
+
+    //       return setdataall(filter)
+    //     }
     
-      setdatawomen(productwomen);
-    })
+    //   setdataall(productall);
+    // })
 }
 
     return(
@@ -101,13 +150,13 @@ export default function PageProducts(){
 
             <Flex  flexDir={"row"} pos="fixed" top="70" left={"0"}>
             <Sidebar/>
-            <SidebarProduct filter={fetchData}/>
+            <SidebarProduct  cat={[...categories1]} setCat={setCategories1} gen={[...gender]} setGen={setGender} filter={fetchFilPro} />
             </Flex>
 
           
             <Center marginLeft={"450px"}>
               
-            <Products data={datamen} id="men"/>
+            <Products data={data} id="men"/>
               
                </Center>
 

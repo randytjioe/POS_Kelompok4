@@ -30,6 +30,34 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
     
     const initialRef = useRef(null)
     const finalRef = useRef(null)
+
+    const CheckCategories = (e,param) => {
+        let newCat 
+          if(e.target.checked)
+      {  
+      
+        props.setCat([...props.cat, param])
+      }    else {
+        newCat = props.cat.filter((val) => {
+          return val !== param
+        })
+         props.setCat([...newCat])
+      }  }
+       
+      const CheckGender = (e,param) => {
+        let newGen 
+          if(e.target.checked)
+      {  
+      
+        props.setGen([...props.gen, param])
+      }    else {
+        newGen = props.gen.filter((val) => {
+          return val !== param
+        })
+         props.setGen([...newGen])
+      }  
+    }
+
       return (
         <>
       <Flex zIndex={90} px={2} w={'215px'}
@@ -44,10 +72,14 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
             GENDER
           </Flex>
           <Stack px={5} spacing={2} direction='column' fontSize="12px">
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked onChange={(e)=> { 
+    CheckGender(e,"men")
+      }}>
     PRIA
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked onChange={(e)=> { 
+    CheckGender(e,"women")
+      }}>
     WANITA
   </Checkbox>
  
@@ -63,32 +95,40 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
             
           </InputGroup>
           <Stack px={5} spacing={2} direction='column' fontSize="10px">
-  <Checkbox colorScheme='cyan' defaultChecked >
+  <Checkbox colorScheme='cyan' defaultChecked   onChange={(e)=> { 
+    CheckCategories(e,"CASIO")
+      }  }>
     CASIO
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked 
+  onChange={(e)=> { 
+    CheckCategories(e,"SEIKO")
+      }}>
     SEIKO
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked onChange={(e)=> { 
+    CheckCategories(e,"TIMEX")
+      }  }>
     TIMEX
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked  onChange={(e)=> { 
+    CheckCategories(e,"ALEXANDRE CHRISTIE")
+      }  }>
     ALEXANDRE CHRISTIE
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
-    FOSIL
+  <Checkbox colorScheme='cyan' defaultChecked onChange={(e)=> { 
+    CheckCategories(e,"FOSSIL")
+      }  }>
+    FOSSIL
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked  onChange={(e)=> {
-   
-if(e.target.checked)
-props?.filter('GARMIN') 
-else
-props?.filter() 
-
-  }  }>
+  <Checkbox colorScheme='cyan' defaultChecked  onChange={(e)=> { 
+    CheckCategories(e,"GARMIN")
+      }  }>
     GARMIN
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked  onChange={(e)=> { 
+    CheckCategories(e,"ALBA")
+      }  }>
     ALBA
   </Checkbox>
  
@@ -98,12 +138,14 @@ props?.filter()
           
            
           <Flex w="200px" h="56px"  alignItems={'center'} bgColor="#1E2C3C" borderRadius={"2%"}
+  onClick={props?.filter}
           _hover={{
             bg: 'grey',
             color: 'black',
+            cursor:"pointer"
           }} py={2}>
             <Icon as={AiOutlineSearch} color="white" mx={2}/>
-            <Link as="b" mx={3}  fontSize={18} color="white" > FILTER</Link>
+            <Box as="b" mx={3}   fontSize={18} color="white"  > FILTER</Box>
             </Flex>
 
              
