@@ -1,7 +1,7 @@
 import { Flex, Image, InputGroup, InputRightElement,Box,List, Input, 
   Menu,Link, Button,Divider, Icon, MenuButton,MenuItem, MenuList,
    useDisclosure,Popover, PopoverTrigger, PopoverContent, PopoverArrow, 
-   PopoverCloseButton, PopoverHeader, PopoverBody, ListItem, Tooltip ,Center} from '@chakra-ui/react';
+   PopoverCloseButton, PopoverHeader, PopoverBody, ListItem, Tooltip ,Center, Accordion, AccordionButton, AccordionItem, AccordionIcon, AccordionPanel} from '@chakra-ui/react';
 
    import Logo from '../assets/logo.svg.png'
 import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai';
@@ -22,6 +22,9 @@ import {
   FiBox,
   FiWatch,
 } from 'react-icons/fi';
+import {
+BsFillArrowRightCircleFill
+} from 'react-icons/bs'
 import {FaPowerOff} from 'react-icons/fa'
 
 
@@ -34,7 +37,7 @@ export default function Sidebar() {
       <>
     <Flex zIndex={90} px={2} w={'209px'}
      backgroundColor="#1E2C3C" justifyContent="center" 
-       h="full" pos="fixed" top="0" padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"} >
+      h={"100vh"} top={"70"} padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"} >
     <Flex  gap={5} flexDir={"column"}  >
     <Flex   justifyContent="center" alignItems={"center"}>
           <Center>
@@ -51,6 +54,7 @@ export default function Sidebar() {
         </Flex>
         <Flex flexDir={"column"}  alignItems={'center'} >     
         <Divider orientation="horizontal" py={2}/>
+
         <Flex w="207px" h="56px"  alignItems={'center'} 
         _hover={{
           bg: 'grey',
@@ -59,15 +63,64 @@ export default function Sidebar() {
            <Icon as={FiHome} color="white" mx={2}/>
            <Link to='/dashboard' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > DASHBOARD</Link> 
            </Flex>
-        <Flex w="207px" h="56px"  alignItems={'center'} 
+
+
+           <Accordion defaultIndex={[0]} allowMultiple>
+  <AccordionItem>
+    <h2>
+      <AccordionButton>
+        <Box as="span" flex='1' textAlign='left'>
+        <Flex w="180px" h="56px"  alignItems={'center'} 
         _hover={{
           bg: 'grey',
           color: 'black',
-        }} py={2}
+        }} 
         > 
+
+
         <Icon as={FiBox} color="white" mx={2}/>
         <Link to='/products' mx={3} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > PRODUCTS</Link> 
         </Flex>
+        </Box>
+        <AccordionIcon color={"white"} />
+      </AccordionButton>
+    </h2>
+    <AccordionPanel >
+    <Divider orientation="horizontal" />
+    <Flex w="207px" h="56px"  alignItems={'center'}
+        _hover={{
+          bg: 'grey',
+          color: 'black',
+        }} py={2}>
+          <Icon as={BsFillArrowRightCircleFill} color="white" mx={6}/>
+        <Link to='/transaction' mx={1} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > ADD</Link>
+        </Flex>
+        <Divider orientation="horizontal" />
+        <Flex w="207px" h="56px"  alignItems={'center'}
+        _hover={{
+          bg: 'grey',
+          color: 'black',
+        }} py={2}>
+          <Icon as={BsFillArrowRightCircleFill} color="white" mx={6}/>
+        <Link to='/transaction' mx={1} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > EDIT</Link>
+        </Flex>
+        <Divider orientation="horizontal" />
+        <Flex w="207px" h="56px"  alignItems={'center'}
+        _hover={{
+          bg: 'grey',
+          color: 'black',
+        }} py={2}>
+          <Icon as={BsFillArrowRightCircleFill} color="white" mx={6}/>
+        <Link to='/transaction' mx={1} as={ReachLink} fontWeight="bold" fontSize={16} color="white" > DELETE</Link>
+        </Flex>
+      
+    </AccordionPanel>
+  </AccordionItem>
+
+
+</Accordion>
+
+        
         <Flex w="207px" h="56px"  alignItems={'center'}
         _hover={{
           bg: 'grey',

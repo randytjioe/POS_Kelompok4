@@ -1,6 +1,6 @@
 import { Flex, Text, Image, InputGroup,Center, InputRightElement, Input, Divider,InputRightAddon, Link,List, Button, Icon, Box ,Grid,GridItem, Container, ListItem} from '@chakra-ui/react';
 
-export default function ContentBarMen() {
+export default function ContentBar() {
     return(
         <>
 

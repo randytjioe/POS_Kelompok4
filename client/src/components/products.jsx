@@ -136,8 +136,9 @@ export default function ProductPage(props) {
 
     return (
         <>
-      <Flex zIndex={40} w="1200px"   gap={2} paddingY="3"  justifyContent={"center"} 
-      flexDir={"row"} pos="fixed" left="389" top="70"  flexWrap="wrap" overflowX={"auto"} overflowY={"auto"}
+      <Flex zIndex={40} w="1200px"   gap={2} paddingTop="70" paddingBottom={"20px"} justifyContent="start"
+      paddingX={"20px"}
+      flexDir={"row"}   flexWrap="wrap" overflowX={"auto"} overflowY={"auto"}
      h="full">
       {/* <Flex > */}
 
@@ -156,7 +157,7 @@ export default function ProductPage(props) {
       
         
         {
-            data?.map((product)=> {
+            data?.map((product,idx)=> {
 
                 return (
                     <>
@@ -178,7 +179,7 @@ export default function ProductPage(props) {
               
     </Flex>
                       
-                        <Flex  justifyContent="center" gap={2} alignContent="center" flexDir={"column"} w="194px" bgColor={"#181918"}   >
+                        <Flex  justifyContent="center" gap={2} alignContent="center" flexDir={"column"} w="190px"  bgColor={"#181918"}   >
                           <Flex
                             fontSize="14px"
                             fontWeight="semibold"
@@ -193,11 +194,13 @@ export default function ProductPage(props) {
                           <Flex
                             fontSize="12px"
                             color={"white"}
-                            textAlign="center"
+                            // textAlign="center"
                             as="h4"
                             lineHeight="tight"
-                            isTruncated
-                            
+                            // isTruncated
+                            // minH={"70px"}
+                            // maxW="100px"
+                             
                             flexWrap="wrap">
                             {product?.name}
                           </Flex>
@@ -227,6 +230,7 @@ export default function ProductPage(props) {
               
                        
                       </Flex>
+                  
                               
                     
                     

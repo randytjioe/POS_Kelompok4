@@ -25,7 +25,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
   import {FaPowerOff} from 'react-icons/fa'
   
   
-  export default function Sidebar() {
+  export default function Sidebar(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     const initialRef = useRef(null)
@@ -34,7 +34,8 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
         <>
       <Flex zIndex={90} px={2} w={'215px'}
        backgroundColor="white" justifyContent="center" 
-         h="full" pos="fixed" left="209" top="70" padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"}>
+       h={"100vh"}
+      left="209"  padding="20px" display={"flex"}  borderRight={"2px solid #E2E8F0"}>
       <Flex  gap={3} flexDir={"column"}  >
       <Flex   justifyContent="center" alignItems={"center"} fontSize="24px">
         DAFTAR KATEGORI
@@ -62,7 +63,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
             
           </InputGroup>
           <Stack px={5} spacing={2} direction='column' fontSize="10px">
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked >
     CASIO
   </Checkbox>
   <Checkbox colorScheme='cyan' defaultChecked>
@@ -77,7 +78,14 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
   <Checkbox colorScheme='cyan' defaultChecked>
     FOSIL
   </Checkbox>
-  <Checkbox colorScheme='cyan' defaultChecked>
+  <Checkbox colorScheme='cyan' defaultChecked  onChange={(e)=> {
+   
+if(e.target.checked)
+props?.filter('GARMIN') 
+else
+props?.filter() 
+
+  }  }>
     GARMIN
   </Checkbox>
   <Checkbox colorScheme='cyan' defaultChecked>
