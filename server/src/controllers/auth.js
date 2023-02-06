@@ -81,6 +81,26 @@ const authController = {
                 message:err
             })
         }
+    },
+    keeplogin : async (req,res) => {
+        try {
+            const token = req.headers.authorization;
+
+            const oldUser = jwt.verify(token,process.env.secret_key)
+            const newUSer = await User.findByPk(oldUser.id)
+
+            delete newUSer.dataValues.password;
+            
+            res.status(200).json({
+                result:newUSer
+            })
+
+            
+        } catch (err) {
+            res.status(400).json({
+                message :err
+            })
+        }
     }
 }
 
