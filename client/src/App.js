@@ -1,20 +1,18 @@
-import { Routes, Route } from "react-router-dom";
-import PageAdmin from "./pages/adminpage";
-import PageLogin from "./pages/loginpage";
-import PageProduct from "./pages/productspage";
-import PageCashier from "./pages/pagecashier"
-
+import { Routes,Route } from 'react-router-dom';
+import './App.css';
+// import LoginPage from './pages/loginpage';
+import routes from "./routes/routes"
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/dashboard" element={<PageAdmin />} />
-        {/* <Route path="/login" element={<PageLogin />} /> */}
-        <Route path="/products" element={<PageProduct />} />
-        <Route path="/cashier" element={<PageCashier />} />
-      </Routes>
-    </>
-  );
-}
+   <Routes key={"route"}>
+    {routes.map((val,key)=> {
+      return(
+        <Route exact path={val.path} element={val.element} key={key}></Route>
+        
+      )
+    })}
 
+   </Routes>
+  )
+}
 export default App;
