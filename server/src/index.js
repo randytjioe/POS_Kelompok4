@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config()
 const PORT = process.env.PORT;
 const cors = require("cors")
-const {authRoutes} = require("./routes")
+const {authRoutes,productRoutes,brandRoutes,genderRoutes} = require("./routes")
 app.use(express.json());
 const mysql = require("mysql2");
 const options = {
@@ -14,6 +14,10 @@ const options = {
 
 
 app.use("/auth",authRoutes)
+app.use("/product",productRoutes)
+app.use("/gender",genderRoutes)
+app.use("/brand",brandRoutes)
+
 
 
 app.listen(PORT,()=>{

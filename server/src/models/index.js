@@ -36,5 +36,8 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.user = require("./user")(sequelize,Sequelize)
+db.product = require("./product")(sequelize,Sequelize)
+db.gender = require("./gender")(sequelize,Sequelize)
+db.brand = require ("./brand")(sequelize,Sequelize)
 
 module.exports = db;
