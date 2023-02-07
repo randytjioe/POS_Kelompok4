@@ -7,8 +7,6 @@ const cors = require("cors")
 const {authRoutes} = require("./routes")
 app.use(express.json());
 const mysql = require("mysql2");
-const cors=require('cors');
-app.use(cors())
 const options = {
     origin: 'http://localhost:3000',
     }

@@ -3,7 +3,7 @@ import { Flex, Image, InputGroup, InputRightElement,Box,List, Input,
      useDisclosure,Popover, PopoverTrigger, PopoverContent, PopoverArrow, 
      PopoverCloseButton, PopoverHeader, PopoverBody, ListItem, Tooltip ,Center, Stack, Checkbox} from '@chakra-ui/react';
   
-     import Logo from '../assets/logo.svg.png'
+     import Logo from '../assets/logojam.png'
   import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai';
   import { RiAccountCircleFill } from 'react-icons/ri';
   import { MdOutlineFavoriteBorder } from 'react-icons/md';
