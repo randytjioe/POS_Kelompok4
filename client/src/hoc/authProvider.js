@@ -1,10 +1,10 @@
 import {useDispatch} from "react-redux"
 import user_types from "../redux/auth/types"
-import { axiosInstance, AxiosInstance } from "../config/config"
+import { axiosInstance} from "../config/config"
 import { useEffect, useState } from "react"
 import Loading from "../components/loading"
 
-const authProvider  = ({childre}) => {
+const authProvider  = ({children}) => {
     const dispatch = useDispatch()
     const [isLoading,setIsLoading] = useState(true)
 

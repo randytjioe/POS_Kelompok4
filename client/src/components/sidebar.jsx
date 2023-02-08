@@ -1,24 +1,13 @@
-import { Flex, Image, InputGroup, InputRightElement,Box,List, Input, 
-  Menu,Link, Button,Divider, Icon, MenuButton,MenuItem, MenuList,
-   useDisclosure,Popover, PopoverTrigger, PopoverContent, PopoverArrow, 
-   PopoverCloseButton, PopoverHeader, PopoverBody, ListItem, Tooltip ,Center, Accordion, AccordionButton, AccordionItem, AccordionIcon, AccordionPanel} from '@chakra-ui/react';
+import { Flex, Image,Box,Link,Divider, Icon,
+   useDisclosure,Center, Accordion, AccordionButton, AccordionItem, AccordionIcon, AccordionPanel} from '@chakra-ui/react';
 
-   import Logo from '../assets/logo.svg.png'
-import { AiOutlineSearch, AiOutlinePlus } from 'react-icons/ai';
-import { RiAccountCircleFill } from 'react-icons/ri';
-import { MdOutlineFavoriteBorder } from 'react-icons/md';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
+import Logo from '../assets/logojam.png'
+import user_types from '../redux/auth/types';
+import { useDispatch } from 'react-redux';
 import { Link as ReachLink } from "react-router-dom"
 import { useRef } from 'react';
 import {
   FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
   FiBox,
   FiWatch,
 } from 'react-icons/fi';
@@ -29,10 +18,18 @@ import {FaPowerOff} from 'react-icons/fa'
 
 
 export default function Sidebar() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const { isOpen, onOpen, onClose } = useDisclosure()
   
-  const initialRef = useRef(null)
-  const finalRef = useRef(null)
+  // const initialRef = useRef(null)
+  // const finalRef = useRef(null)
+  const dispatch = useDispatch()
+  function logOut() {
+    dispatch({
+      type: user_types.USER_LOGOUT,
+    });
+    localStorage.clear();
+    window.location.reload(true);
+  }
     return (
       <>
     <Flex zIndex={90} px={2} w={'209px'}
@@ -137,7 +134,7 @@ export default function Sidebar() {
           color: 'black',
         }} py={2}>
           <Icon as={FaPowerOff} color="white" mx={2}/>
-          <Link as="b" mx={3}  fontSize={16} color="white" > LOG OUT</Link>
+          <Link as="b" mx={3}  fontSize={16} color="white" onClick={logOut} > LOG OUT</Link>
           </Flex>
 
         </Flex>  
