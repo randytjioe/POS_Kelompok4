@@ -1,10 +1,23 @@
 const db = require("../models")
 const Product = db.product
+const Brand = db.brand
+const Gender = db.gender
 const {Op} = require("sequelize")
 const productController = {
     getProduct : async (req,res) => {
         try {
-            const product = await Product.findAll()
+            const product = await Product.findAll({
+                include:[
+                    {
+                        model:Brand,
+                        as:"Brand"
+                    },
+                    {
+                        model:Gender,
+                        as:"Gender"
+                    }
+                ]
+            })
             
             res.status(200).json({
                 message : product
@@ -50,6 +63,18 @@ const productController = {
         try {
             const name = req.body.name 
             const filterName = await Product.findAll({
+                include:[
+                {
+                    model:Brand,
+                    attributes:["name"],
+                    as:"Brand"
+                },
+                {
+                    model:Gender,
+                    attributes:["name"],
+                    as:"Gender"
+                }
+                ],
                 where:{
                     name :{
                         [Op.like] : `%${name}%`
@@ -68,6 +93,71 @@ const productController = {
             })
         }
     },
+    getProductByBrand : async (req,res) => {
+        try {
+            const brand_id = req.body.brand_id;
+            
+            const filterBrand = await Product.findAll({
+                 include:[
+                {
+                    model:Brand,
+                    attributes:["name"],
+                    as:"Brand"
+                },
+                {
+                    model:Gender,
+                    attributes:["name"],
+                    as:"Gender"
+                }
+                ],
+                where :{
+                    brand_id : brand_id
+                }
+            })
+
+            res.status(200).json({
+                message: "filter berdasarkan brand",
+                result : filterBrand
+            })
+        } catch (err) {
+            res.status(400).json({
+                message: err
+            })
+        }
+
+    },
+    getProductByGender:async (req,res) =>{
+        try {
+            const gender_id = req.body.gender_id
+
+            const filterGender = await Product.findAll({
+                include : [
+                    {
+                        model:Brand,
+                        attributes:["name"],
+                        as:"Brand"
+                    },
+                    {
+                        model:Gender,
+                        attributes:["name"],
+                        as:"Gender"
+                    }
+                ],
+                where :{
+                    gender_id:gender_id
+                }
+            })
+            res.status(200).json({
+                message:"filter berdasarkan gender",
+                result:filterGender
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(400).json({
+                message:err
+            })
+        }
+    }
     
 }
 

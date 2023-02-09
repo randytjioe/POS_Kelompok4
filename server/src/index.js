@@ -4,9 +4,11 @@ const dotenv = require("dotenv");
 dotenv.config()
 const PORT = process.env.PORT;
 const cors = require("cors")
-const {authRoutes,productRoutes,brandRoutes,genderRoutes} = require("./routes")
+const {authRoutes,productRoutes,brandRoutes,genderRoutes,transRoutes} = require("./routes")
 app.use(express.json());
 const mysql = require("mysql2");
+const db = require("./models");
+// db.sequelize.sync({ alter: true });
 const options = {
     origin: 'http://localhost:3000',
     }
@@ -15,8 +17,9 @@ const options = {
 
 app.use("/auth",authRoutes)
 app.use("/product",productRoutes)
-app.use("/gender",genderRoutes)
+app.use("/gender", genderRoutes)
 app.use("/brand",brandRoutes)
+app.use("/transaction",transRoutes)
 
 
 
