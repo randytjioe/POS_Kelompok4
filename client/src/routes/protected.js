@@ -17,7 +17,7 @@ function ProtectedPage ({
         } 
 
         if( userSelector.id && userSelector.isadmin){
-            return navigate("/adminpage")
+            return navigate("/")
         }
 
         if( userSelector.id && !userSelector.isadmin){

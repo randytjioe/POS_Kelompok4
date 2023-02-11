@@ -44,6 +44,9 @@ const genderController = {
             })
         }
 
+    },
+    updateGender : async(req,res) => {
+        
     }
 }
 

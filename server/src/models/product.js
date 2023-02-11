@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     harga: DataTypes.INTEGER,
     image_url: DataTypes.STRING,
     brand_id : {type:DataTypes.INTEGER,allowNull:false},
-    gender_id : {type:DataTypes.INTEGER,allowNull:false}
+    gender_id : {type:DataTypes.INTEGER,allowNull:false},
+    stock_update : DataTypes.INTEGER
 
   }, {
     sequelize,
