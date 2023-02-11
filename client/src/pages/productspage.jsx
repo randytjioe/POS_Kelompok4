@@ -40,7 +40,7 @@ export default function PageProducts() {
 
   const fetchFilPro = async (values) =>{
 
-    await axiosInstance.post("/brand",values).then((res)=>{
+    await axiosInstance.post("/product/brand",{brand_id :values}).then((res)=>{
       setData(res.data.result)
     })
   }

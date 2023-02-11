@@ -17,8 +17,8 @@ export default function PageTransaction() {
     }, 500);
   }, []);
 
-  async function fetchData(categories1, gender) {
-    await axiosInstance.get("/transaction").then((res) => {
+  async function fetchData(values) {
+    await axiosInstance.get("/transaction/v1",{tgl:values}).then((res) => {
       setData(res.data.result);
     });
   }
@@ -29,7 +29,7 @@ export default function PageTransaction() {
         <SideBar />
       </Flex>
       <Center marginLeft={"209px"}>
-        <Transaction data={data} />
+        <Transaction fetchData={fetchData} data={data} />
       </Center>
     </>
   );

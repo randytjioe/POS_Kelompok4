@@ -45,7 +45,7 @@ const routes = [
         path:"/transaction",
         element : (
                 <ProtectedPage needLogin={true} >
-                <PageProducts/>
+                <PageTransaction/>
                 </ProtectedPage>
         )
     },

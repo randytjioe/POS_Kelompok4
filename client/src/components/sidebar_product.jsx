@@ -22,7 +22,7 @@ import { Link as ReachLink } from "react-router-dom";
 import { useRef } from "react";
 import { FaPowerOff } from "react-icons/fa";
 
-export default function Sidebar(props) {
+export default function SidebarProduct(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const data = props.data;
   const initialRef = useRef(null);
@@ -31,7 +31,8 @@ export default function Sidebar(props) {
   const CheckCategories = (e, param) => {
     let newCat;
     if (e.target.checked) {
-      props.setCat([...props.cat,param]);
+      return newCat = props.setCat([...props.cat,param]);
+     
     } else {
       newCat = props.cat.filter((val) => {
         return val !== param;
@@ -52,6 +53,10 @@ export default function Sidebar(props) {
     }
   };
 
+  function filter(){
+    const test=props?.filter([...props?.cat])
+    console.log([...props?.cat])
+  }
   return (
     <>
       <Flex
@@ -214,7 +219,7 @@ export default function Sidebar(props) {
             h="56px"
             alignItems={"center"}
             borderRadius={"2%"}
-            onClick={props?.filter}
+            onClick={filter}
             _hover={{
               bg: "orange",
               color: "black",
