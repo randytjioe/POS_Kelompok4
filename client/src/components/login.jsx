@@ -41,7 +41,7 @@ import {
       const isAuth = await dispatch(userLogin(user));
       console.log(isAuth)
       if(isAuth.status && isAuth.data.isadmin){
-        return navigate("/adminpage")
+        return navigate("/")
       }else if (isAuth.status && !isAuth.data.isadmin){
         return navigate ("/cashierpage")
       }

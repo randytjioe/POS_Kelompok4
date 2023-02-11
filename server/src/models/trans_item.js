@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Trans_Item.belongsTo(models.Product)
-      models.Product.hasMany(Trans_Item)
-      Trans_Item.belongsTo(models.Trans_Header)
-      models.Trans_Header.hasMany(Trans_Item)
+      // Trans_Item.belongsTo(models.Product)
+      // models.Product.hasMany(Trans_Item)
+      // Trans_Item.belongsTo(models.Trans_Header)
+      // models.Trans_Header.hasMany(Trans_Item)
     }
   }
   Trans_Item.init({

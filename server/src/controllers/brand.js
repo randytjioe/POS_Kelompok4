@@ -44,6 +44,9 @@ const brandController  = {
                     message:err
                 })
             }
+    },
+    updateBrand : async(req,res) => {
+        
     }
 }
 

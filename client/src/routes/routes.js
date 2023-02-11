@@ -2,7 +2,9 @@ import LoginPage from "../pages/loginpage"
 import AdminPage from "../pages/adminpage"
 import CashierPage from "../pages/cashierpage"
 import PageProducts from "../pages/productspage"
+import PageTransaction from "../pages/pagetransaction"
 import ProtectedPage from "./protected"
+
 
 
 const routes = [
@@ -16,7 +18,7 @@ const routes = [
         )
     },
     {
-        path:"/adminpage",
+        path:"/",
         element :(
                     <ProtectedPage needLogin={true} >
                     <AdminPage/>
@@ -39,6 +41,15 @@ const routes = [
                 </ProtectedPage>
         )
     },
+    {
+        path:"/transaction",
+        element : (
+                <ProtectedPage needLogin={true} >
+                <PageProducts/>
+                </ProtectedPage>
+        )
+    },
+    
 ]
 
 export default routes;

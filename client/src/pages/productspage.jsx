@@ -1,119 +1,122 @@
-import Navbar from "../components/navbar"
-import Sidebar from "../components/sidebar"
-import SidebarProduct from "../components/sidebar_product"
-import { useEffect, useState } from "react"
-import { axiosInstance } from "../config/config"
-import { Flex, Center, Spinner } from "@chakra-ui/react"
-import Products from "../components/products"
-export default function PageProducts(){
-    const [data,setData] = useState();
-    const [datamen,setdatamen] = useState();
-    const [datawomen,setdatawomen] = useState();
-    
-    const [isLoading,setIsLoading] = useState(true)
-    const [posts,setPosts] = useState([])
-    
-    const fetchPosts = async (garmin)=> {
-     const datas =  await axiosInstance.get("posts")
-    console.log(datas.result.data)
-     
-    //  .then((res)=> {
-    //       setPosts(res.data)
-    //   })
+import Navbar from "../components/navbar";
+import Sidebar from "../components/sidebar";
+import SidebarProduct from "../components/sidebar_product";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../config/config";
+import { Flex, Center, Spinner } from "@chakra-ui/react";
+import Products from "../components/products";
+export default function PageProducts() {
+  const [data, setData] = useState();
+  const [datacat, setDataCat] = useState();
+  const [datamen, setdatamen] = useState();
+  const [datawomen, setdatawomen] = useState();
+  const [dataall, setdataall] = useState();
 
-      console.log(garmin)
-      if(garmin) 
-      {
-       const filtered =  datas.result.data.filter((val)=> {
-          return  val?.category === garmin 
-        })
+  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
+  const [sort, setSort] = useState("ASC");
+  const [categories1, setCategories1] = useState([]);
 
-        return setPosts(filtered)
-      }
-     
-      setPosts(datas.result.data)
-    }
-    
-    useEffect(()=>{
-      fetchPosts();
-        fetchData();
-      setTimeout(() => {
-        
-          setIsLoading(!isLoading)
-         
-        }, 500);  
-     
-    },[])
-    
-    async function fetchData(garmin) {
-     await axiosInstance.get("/product-men").then((res)=>{
-        setData(res.data.result)
-        
-        const productmen = res.data.result.filter((val) => {
-          return val.men === 1 
-        })
+  const [gender, setGender] = useState([]);
 
-        console.log(productmen)
+  // const fetchFilPro = async () => {
+  //   let url = "";
+  //   categories1.map((val, idx) => {
+  //     idx ? (url += `&${val}=${val}`) : (url += `${val}=${val}`);
+  //   });
 
-        if(garmin) { 
-        console.log("masuk")
-        
-          
-        const filter =   productmen.filter((val)=> {
-            return val.category === garmin
-          })
+  //   gender.map((val, idx) => {
+  //     url ? (url += `&${val}=${val}`) : (url += `${val}=${val}`);
+  //   });
 
-        console.log(filter)
+  //   url += `&order=${sort}`;
 
+  //   console.log(url);
 
-          return setdatamen(filter)
-        }
-    
-        setdatamen(productmen);
-    })
+  //   await axiosInstance.get("/filter?" + url).then((res) => {
+  //     setData(res.data.result);
+  //   });
+  // };
 
-    await axiosInstance.get("/product-women").then((res)=>{
+  const fetchFilPro = async (values) =>{
+
+    await axiosInstance.post("/brand",values).then((res)=>{
       setData(res.data.result)
-      
-      const productwomen = res.data.result.filter((val) => {
-        return val.women === 1 
-      })
-      
-    
-      setdatawomen(productwomen);
     })
-}
+  }
 
-    return(
-        <>
-            {
-        isLoading? 
+  const fetchFinPro = async (search) => {
+    let url = "";
+
+    url += `name=${search}`;
+
+    console.log(url);
+
+    await axiosInstance.get("/product/name?" + url).then((res) => {
+      setData(res.data.result);
+    });
+  };
+
+  useEffect(() => {
+    console.log(categories1);
+  }, [categories1]);
+
+  useEffect(() => {
+    console.log(gender);
+  }, [gender]);
+
+  useEffect(() => {
+    // fetchPosts();
+    fetchData();
+    fetchDataCat();
+    console.log(categories1)
+    console.log(gender)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
+  async function fetchData(categories1, gender) {
+    await axiosInstance.get("/product/v1").then((res) => {
+      setData(res.data.result);
+    });
+  }
+  async function fetchDataCat(categories1, gender) {
+    await axiosInstance.get("/brand/v1").then((res) => {
+      setDataCat(res.data.result);
+      console.log(res.data.result)
+    });
+  }
+
+  return (
+    <>
+      {isLoading ? (
         // <Loading/>
 
         <Center w={"100vw"} h="100vh" alignContent={"center"}>
-      <Spinner/>
-
+          <Spinner size={"xl"} thickness="10px" color="blue.500" />
         </Center>
-        :
-        (
-            <>
-            <Navbar/>
-
-            <Flex  flexDir={"row"} pos="fixed" top="70" left={"0"}>
-            <Sidebar/>
-            <SidebarProduct filter={fetchData}/>
-            </Flex>
-
-          
-            <Center marginLeft={"450px"}>
-              
-            <Products data={datamen} id="men"/>
-              
-               </Center>
-
-               </>
-    )
-}
-</>
-)
+      ) : (
+        <>
+          <Navbar filter={fetchFinPro} />
+          <Flex flexDir={"row"} pos="fixed" left={"0"}>
+            <Sidebar />
+            <SidebarProduct
+              cat={[...categories1]}
+              setCat={setCategories1}
+              gen={[...gender]}
+              setGen={setGender}
+              sort={[...sort]}
+              setSort={setSort}
+              filter={fetchFilPro}
+              data={datacat}
+            />
+          </Flex>
+          <Center marginLeft={"450px"}>
+            <Products data={data} id="men" />
+          </Center>
+        </>
+      )}
+    </>
+  );
 }

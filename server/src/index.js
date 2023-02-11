@@ -9,6 +9,7 @@ app.use(express.json());
 const mysql = require("mysql2");
 const db = require("./models");
 // db.sequelize.sync({ alter: true });
+
 const options = {
     origin: 'http://localhost:3000',
     }
@@ -20,6 +21,7 @@ app.use("/product",productRoutes)
 app.use("/gender", genderRoutes)
 app.use("/brand",brandRoutes)
 app.use("/transaction",transRoutes)
+app.use("/post_image",express.static(`${__dirname}/public/IMAGE_PRODUCT`))
 
 
 
