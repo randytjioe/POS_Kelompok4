@@ -1,6 +1,6 @@
 import Navbar from "../components/navbar"
 import Sidebar from "../components/sidebar"
-import SidebarProduct from "../components/sidebar_productcashier"
+import SidebarProductCashier from "../components/sidebar_productcashier"
 import { useEffect, useState } from "react"
 import { axiosInstance } from "../config/config"
 import { Flex, Center, Spinner } from "@chakra-ui/react"
@@ -153,7 +153,7 @@ export default function CashierPage(){
             <Navbar/>
             <Flex  flexDir={"row"} pos="fixed" top="70" left={"0"}>
            
-            <SidebarProduct  cat={[...categories1]} setCat={setCategories1} gen={[...gender]} setGen={setGender} filter={fetchFilPro} />
+            <SidebarProductCashier  cat={[...categories1]} setCat={setCategories1} gen={[...gender]} setGen={setGender} filter={fetchFilPro} />
 
             </Flex>
 

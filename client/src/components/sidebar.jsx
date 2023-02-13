@@ -41,13 +41,6 @@ import { Link as ReachLink } from "react-router-dom";
 import { useRef } from "react";
 import {
   FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
   FiBox,
   FiWatch,
 } from "react-icons/fi";

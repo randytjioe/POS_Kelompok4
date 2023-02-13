@@ -15,10 +15,6 @@ import {
   GridItem,
   Icon,
   Center,
-  IconButton,
-  Slide,
-  Text,
-  Stack,
   Table,
   Thead,
   Tbody,
@@ -52,7 +48,7 @@ export default function Transaction(props) {
     if (data) {
       setTotal(
         data?.reduce(
-          (partialSum, product) => partialSum + product.total_harga,
+          (partialSum, product) => partialSum + product.harga,
           0
         )
       );
@@ -63,8 +59,16 @@ export default function Transaction(props) {
     console.log(total);
   }, [total]);
   console.log(selectedDates);
+
+  function filter() {
+    const data =  [selectedDates[0],selectedDates[1]]
+    props?.fetchData()
+    console.log(data)
+  }
   return (
     <>
+
+    
       <Center flexDir={"column"} className="table-trans">
         <Center flexDir={"row"} px={"20px"} py={"20px"} gap={5}>
           Date:
@@ -72,11 +76,11 @@ export default function Transaction(props) {
             selectedDates={selectedDates}
             onDateChange={setSelectedDates}
           />
-          <Button>Filter</Button>
+          <Button onClick={filter}>Filter</Button>
         </Center>
         <Flex>
           <Flex flexDir={"column"} className="table-trans">
-            <Accordion defaultIndex={[0]} allowToggle>
+            <Accordion defaultIndex={[0]} allowToggle w="1000px">
               <AccordionItem>
                 <h2>
                   <AccordionButton>
@@ -84,15 +88,21 @@ export default function Transaction(props) {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4}>
-                  <TableContainer>
+                <AccordionPanel pb={4} w="1000px">
+                  <TableContainer >
                     <Table variant="striped" colorScheme="teal">
                       {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
                       <Thead>
                         <Tr>
-                          <Th>No Transaction</Th>
-                          <Th>Tanggal Transaksi</Th>
-                          <Th>Total Belanja</Th>
+                          <Th textAlign="centre">No Transaction</Th>
+                          <Th w="10px" textAlign="centre">Tanggal</Th>
+                          {/* <Th w="20px">Kasir</Th> */}
+                          <Th textAlign="centre">Produk</Th>
+                          <Th textAlign="centre">Brand</Th>
+                          <Th w="50px" textAlign="centre">Gender</Th>
+                          <Th textAlign="centre">Harga</Th>
+                          <Th w="10px" textAlign="centre">Jumlah</Th>
+                          <Th textAlign="centre">Total Belanja</Th>
                         </Tr>
                       </Thead>
                       <Tbody>
@@ -100,10 +110,16 @@ export default function Transaction(props) {
                           return (
                             <>
                               <Tr>
-                                <Td>{product?.no_transaction}</Td>
-                                <Td>{product?.tgl_trans}</Td>
-                                <Td>
-                                  Rp. {product?.total_harga.toLocaleString()}
+                                <Td textAlign="centre">{product?.Trans_Header.no_trans}</Td>
+                                <Td textAlign="centre" w="10px">{product?.Trans_Header.tgl}</Td>
+                                {/* <Td w="20px">{product?.Trans_Header.User.name}</Td> */}
+                                <Td textAlign="centre">{product?.Product.name}</Td>
+                                <Td textAlign="centre">{product?.Product.Brand.name}</Td>
+                                <Td textAlign="centre" w="50px">{product?.Product.Gender.name}</Td>
+                                <Td textAlign="centre">{product?.Product.harga}</Td>
+                                <Td textAlign="centre" w="5px">{product?.qty}</Td>
+                                <Td textAlign="centre">
+                                     Rp. {product?.harga.toLocaleString()}
                                 </Td>
                               </Tr>
                             </>
@@ -114,50 +130,10 @@ export default function Transaction(props) {
                         <Tr>
                           <Th>TOTAL</Th>
                           <Th></Th>
-                          <Th isNumeric>Rp. {total.toLocaleString()}</Th>
-                        </Tr>
-                      </Tfoot>
-                    </Table>
-                  </TableContainer>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
-
-            <Accordion defaultIndex={[0]} allowToggle>
-              <AccordionItem>
-                <h2>
-                  <AccordionButton>
-                    <Flex className="table-trans">Product</Flex>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <TableContainer className="table-trans">
-                    <Table variant="striped" colorScheme="teal">
-                      {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-                      <Thead>
-                        <Tr>
-                          <Th>No Transaction</Th>
-                          <Th>Nama Produk</Th>
-                          <Th>Jumlah</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {data?.map((product) => {
-                          return (
-                            <>
-                              <Tr>
-                                <Td>{product?.no_transaction}</Td>
-                                <Td>{product?.name}</Td>
-                                <Td> {product?.qty}</Td>
-                              </Tr>
-                            </>
-                          );
-                        })}
-                      </Tbody>
-                      <Tfoot>
-                        <Tr>
-                          <Th>TOTAL</Th>
+                          <Th></Th>
+                          <Th></Th>
+                          <Th></Th>
+                          <Th></Th>
                           <Th></Th>
                           <Th isNumeric>Rp. {total.toLocaleString()}</Th>
                         </Tr>
@@ -167,6 +143,8 @@ export default function Transaction(props) {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
+
+          
           </Flex>
         </Flex>
       </Center>
