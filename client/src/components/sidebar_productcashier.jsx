@@ -24,7 +24,7 @@ import { FaPowerOff } from "react-icons/fa";
 
 export default function SidebarProductCashier(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const data = props.data;
+  const data = props.cat;
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 

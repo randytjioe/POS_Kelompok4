@@ -35,14 +35,17 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import React, { Component } from "react";
+import moment from "moment"
 
 import { RangeDatepicker } from "chakra-dayzed-datepicker";
 
 export default function Transaction(props) {
   const data = props.data;
   // const [startDate, endDate] = dateRange;
+  const tgl = new Date();
+  const fullTgl = `${tgl.getFullYear()}-${tgl.getMonth() + 1}-${tgl.getDate()}`
   const [total, setTotal] = useState(0);
-  const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
+  const [selectedDates, setSelectedDates] = useState([new Date(),new Date()]);
   useEffect(() => {
     console.log(data);
     if (data) {
@@ -61,9 +64,8 @@ export default function Transaction(props) {
   console.log(selectedDates);
 
   function filter() {
-    const data =  [selectedDates[0],selectedDates[1]]
-    props?.fetchData()
-    console.log(data)
+    props?.fetchData(selectedDates[0],selectedDates[1])
+    console.log(selectedDates)
   }
   return (
     <>
@@ -75,6 +77,7 @@ export default function Transaction(props) {
           <RangeDatepicker
             selectedDates={selectedDates}
             onDateChange={setSelectedDates}
+            
           />
           <Button onClick={filter}>Filter</Button>
         </Center>

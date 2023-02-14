@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Products from "../components/products_cashier"
 import {
   Box,
   Flex,
@@ -78,7 +79,7 @@ export default function Cashier(props) {
           px={4}
         >
           <Flex fontWeight="bold" mb={5} fontSize={"24px"}>
-            Products
+            test
           </Flex>
           <Stack spacing={5}>
             {data?.map((product) => (
@@ -120,7 +121,7 @@ export default function Cashier(props) {
               //   </Box>
               // </Flex>
 
-              <Product product={product} handleAddToCart={handleAddToCart} />
+              <Products product={product} handleAddToCart={handleAddToCart} />
             ))}
           </Stack>
         </Flex>

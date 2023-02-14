@@ -6,6 +6,8 @@ import { Flex, Center, Spinner } from "@chakra-ui/react";
 import Transaction from "../components/transaction";
 import { axiosInstance } from "../config/config";
 import "../css/style.css";
+import moment from "moment";
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export default function PageTransaction() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,10 +19,15 @@ export default function PageTransaction() {
     }, 500);
   }, []);
 
-  async function fetchData(values) {
-    await axiosInstance.get("/transaction/v1",{tgl:values}).then((res) => {
+  async function fetchData(dateFrom,dateTo) {
+    dateFrom = [moment().format("YYYY-MM-DD")]
+    dateTo =[moment().format("YYYY-MM-DD")]
+    await axiosInstance.post("/transaction/filterbydate",[...dateFrom,...dateTo]).then((res) => {
       setData(res.data.result);
+      console.log(res.data.result)
+      console.log([...dateFrom,...dateTo])
     });
+
   }
   return (
     <>
