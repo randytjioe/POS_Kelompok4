@@ -16,13 +16,17 @@ export default function CashierPage(){
   
   const [isLoading,setIsLoading] = useState(true)
   const [posts,setPosts] = useState([])
-  const [categories1,setCategories1] =  useState([
-      "GARMIN","CASIO","ALBA","TIMEX", "ALEXANDRE CHRISTIE", "FOSSIL"
-    ])
+  const [categories1,setCategories1] =  useState([])
 
-    const [gender,setGender] = useState(["men","women"])
+  const [gender,setGender] = useState(["men","women"])
   
 
+
+  const fetchCat = async () => {
+    await axiosInstance.get("/brand/v1").then((res) =>{
+      setCategories1(res.data.result)
+    })
+  }
 
   const fetchFilPro = async () => {
     let url = ""
@@ -56,6 +60,7 @@ export default function CashierPage(){
   useEffect(()=>{
     // fetchPosts();
       fetchData();
+      fetchCat();
     setTimeout(() => {
       
         setIsLoading(!isLoading)
@@ -65,7 +70,7 @@ export default function CashierPage(){
   },[])
   
   async function fetchData(categories1,gender) {
-   await axiosInstance.get("/product-all").then((res)=>{
+   await axiosInstance.get("/product/v1").then((res)=>{
       setData(res.data.result)
       
       // const productmen = res.data.result.filter((val) => {
